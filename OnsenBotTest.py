@@ -230,13 +230,13 @@ def handle_message(event):
     elif content in ['会津']:
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                     PostbackTemplateAction(
                         label='会津.雪景色',
                         data='callback',
-                        text='会津.雪景色'   
+                        text='雪景色'   
                     ),
                     PostbackTemplateAction(
                         label='会津.紅葉',
@@ -251,8 +251,8 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                      PostbackTemplateAction(
                         label='会津.川 or 海',
@@ -281,8 +281,8 @@ def handle_message(event):
     elif content in ['会津.雪景色']:
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                     PostbackTemplateAction(
                         label='会津.雪景色.美肌',
@@ -302,8 +302,8 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                      PostbackTemplateAction(
                         label='会津.雪景色.生活習慣病',
@@ -332,8 +332,8 @@ def handle_message(event):
     elif content in ['会津.紅葉']:
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                     PostbackTemplateAction(
                         label='会津.紅葉.美肌',
@@ -353,8 +353,8 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
-                title='効能で検索',
+                text='希望する景色を選択してください',
+                title='景色で検索',
                 actions=[
                      PostbackTemplateAction(
                         label='会津.紅葉.生活習慣病',
@@ -385,7 +385,7 @@ def handle_message(event):
     elif content in ['会津.夜空']:
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                     PostbackTemplateAction(
@@ -406,7 +406,7 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                      PostbackTemplateAction(
@@ -438,7 +438,7 @@ def handle_message(event):
         
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                     PostbackTemplateAction(
@@ -459,7 +459,7 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                      PostbackTemplateAction(
@@ -491,7 +491,7 @@ def handle_message(event):
         
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                     PostbackTemplateAction(
@@ -512,7 +512,7 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                      PostbackTemplateAction(
@@ -546,7 +546,7 @@ def handle_message(event):
         
         carousel_columns = [
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                     PostbackTemplateAction(
@@ -567,7 +567,7 @@ def handle_message(event):
                 ]
             ),
             CarouselColumn(
-                text='希望す効能を選択してください',
+                text='希望する効能を選択してください',
                 title='効能で検索',
                 actions=[
                      PostbackTemplateAction(
@@ -1013,7 +1013,8 @@ def handle_message(event):
                 title='景色で検索',
                 actions=[
                     PostbackTemplateAction(
-                        label='中通り.雪景色',
+                        ##label='中通り.雪景色',
+                        label='雪景色',
                         data='callback',
                         text='中通り.雪景色'   
                     ),
@@ -1249,9 +1250,9 @@ def handle_message(event):
                         text='中通り.川 or 海.皮膚病'
                     ),
                     PostbackTemplateAction(
-                        label='中通り.川 or 海.効能スキップ',
+                        label='中通り.川 or 海.効能なし',
                         data='callback',
-                        text='中通り.川 or 海.効能スキップ'
+                        text='中通り.川 or 海.効能なし'
                     )
                 ]
             )
@@ -1318,27 +1319,27 @@ def handle_message(event):
 ##ヤナイスペース
 #「場所無し」分岐
 #「場所無し」と受け取った場合の処理
-    elif content in ['場所無し']:
+    elif content in ['場所なし']:
         carousel_columns = [
             CarouselColumn(
                 text='希望する景色を選択してください',
                 title='タップで検索',
                 actions=[
                     PostbackTemplateAction(
-                        label='場所無し.雪景色',
+                        label='場所なし.雪景色',
                         data='callback',
-                        text='場所無し.雪景色'   
+                        text='場所なし.雪景色'   
                     ),
                     PostbackTemplateAction(
-                        label='場所無し.紅葉',
+                        label='場所なし.紅葉',
                         data='callback',
-                        text='場所無し.紅葉'   
+                        text='場所なし.紅葉'   
                     ),
                 
                     PostbackTemplateAction(
-                        label='場所無し.夜空',
+                        label='場所なし.夜空',
                         data='callback',
-                        text='場所無し.夜空'   
+                        text='場所なし.夜空'   
                     )
                 ]
             ),
@@ -1357,9 +1358,9 @@ def handle_message(event):
                         text='場所無し.森'
                     ),
                     PostbackTemplateAction(
-                        label='場所無し.景色',
+                        label='場所無し.効能なし',
                         data='callback',
-                        text='場所無し.スキップ'
+                        text='場所無し.効能なし'
                     )
                 ]
             )     
