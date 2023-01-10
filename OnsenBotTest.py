@@ -1710,6 +1710,18 @@ def handle_message(event):
         )
 
 
+##----------------------------------------------------------------------------------------------------------------------------------
+    # 温泉の情報受け渡し
+    elif content in ['会津.紅葉.美肌']:
+        carousel_columns = [
+            "https://vt.tiktok.com/ZSRw9aERR/"
+        ]
+
+        message_template = CarouselTemplate(columns=carousel_columns)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TemplateSendMessage(alt_text='carousel template', template=message_template)
+        )
 
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
