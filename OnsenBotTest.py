@@ -26,14 +26,15 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-# 温泉のjson1ファイルを取得
-
-with open('sample.json',encoding="utf-8") as f:
-    jsn =json.load(f)
+connection = psycopg2.connect(host='127.0.0.1',
+                              user='workuser',
+                              password='postgres',
+                              database='onsen_datebase')
+ 
 
 # Pythonでは呼び出す行より上に記述しないとエラーになる
 
-# ブラウザでherokuにアクセスした場合の処理
+# ブラウザでアクセスした場合の処理
 @app.route("/")
 def hello_world():
     return "hello world!"
@@ -1709,13 +1710,18 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
 
+    elif content in ['会津.雪景色.美肌']:
+        with psycopg2.connect(connection) as conn:
+            with conn.cursor() as curs:
+                curs.execute("SELECT * FROM ")
+                db = curs.fetchall()
 
-##----------------------------------------------------------------------------------------------------------------------------------
-    # 温泉の情報受け渡し
-    elif content in ['会津.紅葉.美肌']:
-        carousel_columns = [
-            "https://vt.tiktok.com/ZSRw9aERR/"
-        ]
+        result = (db)
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(alt_text='flex template', contents=result)
+        )
 
         message_template = CarouselTemplate(columns=carousel_columns)
         line_bot_api.reply_message(
