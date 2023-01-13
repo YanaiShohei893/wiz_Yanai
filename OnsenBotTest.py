@@ -499,8 +499,7 @@ def handle_message(event):
 
 
    
-#------------------------------------------------------------------------------------------------------------------------------------------------
-##佐久間スペース
+
 ##「浜通り」と受け取った時の処理
     elif content in ['浜通り']:
         carousel_columns = [
@@ -903,8 +902,7 @@ def handle_message(event):
 
 
 
-#------------------------------------------------------------------------------------------------------------------------------------------------
-##水戸スペース
+
 ##中通りと受け取った時の処理
     elif content in ['中通り']:
         carousel_columns = [
@@ -1268,8 +1266,7 @@ def handle_message(event):
 
 
 
-#------------------------------------------------------------------------------------------------------------------------------------------------
-##ヤナイスペース
+
 #「場所無し」分岐
 #「場所無し」と受け取った場合の処理
     elif content in ['場所なし']:
@@ -1710,24 +1707,15 @@ def handle_message(event):
             TemplateSendMessage(alt_text='carousel template', template=message_template)
         )
 
+#------------------------------------------------------------------------------------------------------------------------------------------------
+#温泉の情報を渡す処理
+#------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
         with psycopg2.connect(connection) as conn:
             with conn.cursor() as curs:
                 curs.execute("SELECT * FROM ")
-                db = curs.fetchall()
 
-        result = (db)
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            FlexSendMessage(alt_text='flex template', contents=result)
-        )
-
-        message_template = CarouselTemplate(columns=carousel_columns)
-        line_bot_api.reply_message(
-            event.reply_token,
-            TemplateSendMessage(alt_text='carousel template', template=message_template)
-        )
 
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
