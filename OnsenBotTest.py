@@ -21,15 +21,41 @@ app = Flask(__name__)
 # 環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
-DATABASE_URL = os.environ.get('DATABASE_URL')
+
+# データベース接続
+users = 'workuser' # initial user
+dbnames = 'test_database'
+passwords = 'postgres'
+conn = psycopg2.connect(" user=" + users +" dbname=" + dbnames +" password=" + passwords)
+
+#　取り出したい場所の指定
+cur = conn.cursor()
+cur.execute('SELECT * FROM onsen_table;')
+results = cur.fetchall()
+
+print(results)
+
+cur.close()
+conn.close()
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-connection = psycopg2.connect(host='127.0.0.1',
-                              user='workuser',
-                              password='postgres',
-                              database='onsen_datebase')
+# データベースに接続
+connection = psycopg2.connect(host='localhost',
+                              user='postgres',
+                              password='PostgreSQLのパスワード',
+                              database='mydb')
+ 
+cur = connection.cursor()
+cur.execute('SELECT * FROM onsen_table;')
+results = cur.fetchall()
+
+#output result
+print(results)
+
+cur.close()
+connection.close()
  
 
 # Pythonでは呼び出す行より上に記述しないとエラーになる
@@ -1711,9 +1737,18 @@ def handle_message(event):
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
-        with psycopg2.connect(connection) as conn:
-            with conn.cursor() as curs:
-                curs.execute("SELECT * FROM ")
+        #　取り出したい場所の指定
+        cur = conn.cursor()
+        cur.execute('SELECT * FROM onsen_table;')
+        results = cur.fetchall()
+
+        cur.close()
+        conn.close()
+        
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(alt_text='flex template', contents=results)
+        )
 
 
 
