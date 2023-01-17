@@ -41,23 +41,6 @@ conn.close()
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-# データベースに接続
-connection = psycopg2.connect(host='localhost',
-                              user='postgres',
-                              password='PostgreSQLのパスワード',
-                              database='mydb')
- 
-cur = connection.cursor()
-cur.execute('SELECT * FROM onsen_table;')
-results = cur.fetchall()
-
-#output result
-print(results)
-
-cur.close()
-connection.close()
- 
-
 # Pythonでは呼び出す行より上に記述しないとエラーになる
 
 # ブラウザでアクセスした場合の処理
