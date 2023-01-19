@@ -22,12 +22,6 @@ app = Flask(__name__)
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
 YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
-# データベース接続
-connection = psycopg2.connect(host='onsen-db-wiz-2.postgres.database.azure.com',
-                              user='workuser',
-                              password='Postgre0609',
-                              database='postgres')
-
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
@@ -1709,7 +1703,21 @@ def handle_message(event):
 #------------------------------------------------------------------------------------------------------------------------------------------------
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
-     
+    elif content in ['会津.雪景色.美肌']:
+        connection = psycopg2.connect(host='onsen-db-wiz-2.postgres.database.azure.com',
+                              user='workuser',
+                              password='Postgre0609',
+                              database='postgres')
+ 
+        cur = connection.cursor()
+        cur.execute('SELECT * FROM onsen_table;')
+        results = cur.fetchall()
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(alt_text='flex template', contents=results)
+        )
+
     # 「最初から」がタップされた場合の処理
     elif content in ['最初から']:
         response = "改めて窓口を探す際には、もう一度「カテゴリ選択」をタップしてください。"
