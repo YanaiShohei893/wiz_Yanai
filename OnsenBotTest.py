@@ -1710,7 +1710,7 @@ def handle_message(event):
                               database='postgres')
  
         cur = connection.cursor()
-        cur.execute('SELECT * FROM onsen_table;')
+        cur.execute('SELECT * FROM onsen_table LIMIT 1;')
         results = cur.fetchall()
 
         line_bot_api.reply_message(
