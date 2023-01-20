@@ -27,6 +27,62 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 # Pythonでは呼び出す行より上に記述しないとエラーになる
 
+# リストをn個ずつのサブリストに分割する
+# l : リスト
+# n : サブリストの要素数
+def split_list(l, n):
+    for idx in range(0, len(l), n):
+        yield l[idx:idx + n]
+
+def onsen_list_flex(db):
+    db.append(
+        (1,1,1,
+        '見つからない場合はこちら',
+        '県の総合的な相談窓口',
+        '県庁県政相談コーナー',
+        '0120-899-721\nkenseisoudan@pref.fukushima.lg.jp',
+        '月～金\n9:00～12:00\n13:00～16:00\n(祝日、年末年始を除く)',
+        0,'2021-12-10 02:37:02.388856')
+        )
+    db_column = list(split_list(db, 10))
+
+    contents_carousel = []
+    for dbcol in db_column:
+        contents_button = []
+        for row in dbcol:
+            contents_button.append(
+                ButtonComponent(
+                    style = 'link',
+                    height = 'sm',
+                    action = PostbackAction(
+                        label = str(row[3])[:40],
+                        data = 'callback',
+                        text = '窓口ID:' + str(row[0])
+                    )
+                )
+            )
+        contents_carousel.append(
+            BubbleContainer(
+                header = BoxComponent(
+                    layout = 'vertical',
+                    contents = [ 
+                        TextComponent(
+                            text = '窓口を選択してください',
+                            weight = 'bold',
+                            color = '#333333',
+                            size = 'xl'
+                        )
+                    ]
+                ),
+                body = BoxComponent(
+                    layout = 'vertical',
+                    contents = contents_button
+                )
+            )
+        )
+        
+    return CarouselContainer(contents=contents_carousel)
+
 # ブラウザでアクセスした場合の処理
 @app.route("/")
 def hello_world():
@@ -1711,7 +1767,9 @@ def handle_message(event):
  
         cur = connection.cursor()
         cur.execute('SELECT  onsen_name FROM onsen_table LIMIT 1;')
-        results = cur.fetchall()
+        db = cur.fetchall()
+
+        results = onsen_list_flex(db)
 
         line_bot_api.reply_message(
             event.reply_token,
