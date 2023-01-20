@@ -1715,7 +1715,7 @@ def handle_message(event):
 
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(text=results)
+            FlexSendMessage(alt_text='flex template',contents=results)
         )
 
     # 「最初から」がタップされた場合の処理
