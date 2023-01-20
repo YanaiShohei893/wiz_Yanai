@@ -1704,10 +1704,20 @@ def handle_message(event):
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
-        results = "https://vt.tiktok.com/ZSRKSyeno/,https://vt.tiktok.com/ZSRKSUx3M/,https://vt.tiktok.com/ZSRKSQe8J/"
+        results = "https://vt.tiktok.com/ZSRKSyeno/"
+        results2 ="https://vt.tiktok.com/ZSRKSUx3M/"
+        results3 ="https://vt.tiktok.com/ZSRKSQe8J/"
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=results)
+            ) 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=results2)
+            ) 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=results3)
             ) 
 
     # 「最初から」がタップされた場合の処理
