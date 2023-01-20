@@ -1704,7 +1704,7 @@ def handle_message(event):
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
-        results = "東山温泉"
+        results = "https://vt.tiktok.com/ZSRKSyeno/,https://vt.tiktok.com/ZSRKSUx3M/,https://vt.tiktok.com/ZSRKSQe8J/"
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=results)
