@@ -1712,10 +1712,10 @@ def handle_message(event):
         cur = connection.cursor()
         cur.execute('SELECT  onsen_name FROM onsen_table LIMIT 1;')
         results = cur.fetchall()
-
+        test = 'test'
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(alt_text='flex template',contents=results)
+            FlexSendMessage(text=test)
         )
 
     # 「最初から」がタップされた場合の処理
