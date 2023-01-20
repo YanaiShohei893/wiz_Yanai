@@ -1711,7 +1711,11 @@ def handle_message(event):
  
         cur = connection.cursor()
         cur.execute('SELECT  onsen_name FROM onsen_table LIMIT 1;')
-        results = cur.fetchall()
+        result = cur.fetchall()
+        results = {
+                    "type": "text",
+                    "text": result
+                }
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=results)
