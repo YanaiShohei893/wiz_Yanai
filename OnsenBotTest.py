@@ -1704,26 +1704,15 @@ def handle_message(event):
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
-        connection = psycopg2.connect(host='onsen-db-wiz-2.postgres.database.azure.com',
-                              user='workuser',
-                              password='Postgre0609',
-                              database='postgres')
- 
-        cur = connection.cursor()
-        cur.execute('SELECT  onsen_name FROM onsen_table LIMIT 1;')
-        result = cur.fetchall()
-        results = {
-                    "type": "text",
-                    "text": result
-                }
+        results = "東山温泉"
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(alt_text='flex template', contents=results)
-        )
+            TextSendMessage(text=results)
+            ) 
 
     # 「最初から」がタップされた場合の処理
-    elif content in ['最初から']:
-        response = "改めて窓口を探す際には、もう一度「カテゴリ選択」をタップしてください。"
+    elif content in ['やり直す']:
+        response = "改めて温泉を探す際には、もう一度「温泉を探す」をタップしてください。"
     # その他              
     else:
         response = "ごめんなさい。メッセージを処理できませんでした。"
