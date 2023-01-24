@@ -1712,8 +1712,9 @@ def handle_message(event):
         cur = connection.cursor()
         cur.execute('SELECT * FROM onsen_table;')
         results = cur.fetchall()
-        content_text = results[2][1]
-        
+        content_text = results[2][1].replace(" ","") + results[2][2].replace(" ","")
+
+
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content_text)
