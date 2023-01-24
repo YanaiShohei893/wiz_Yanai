@@ -1712,14 +1712,11 @@ def handle_message(event):
         cur = connection.cursor()
         cur.execute('SELECT * FROM onsen_table;')
         results = cur.fetchall()
-
-        for row in results: 
-            print(row[1])
-            print(row[2])
-
+        content_text = results[2][1]
+        
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=results)
+            TextSendMessage(text=content_text)
             ) 
 
     # 「最初から」がタップされた場合の処理
