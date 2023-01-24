@@ -1704,20 +1704,22 @@ def handle_message(event):
 #温泉の情報を渡す処理
 #------------------------------------------------------------------------------------------------------------------------------------------------
     elif content in ['会津.雪景色.美肌']:
-        results = "https://vt.tiktok.com/ZSRKSyeno/"
-        results2 ="https://vt.tiktok.com/ZSRKSUx3M/"
-        results3 ="https://vt.tiktok.com/ZSRKSQe8J/"
+        connection = psycopg2.connect(host='onsen-db-wiz-2.postgres.database.azure.com',
+                              user='workuser',
+                              password='Postgre0609',
+                              database='postgres')
+        
+        cur = connection.cursor()
+        cur.execute('SELECT * FROM onsen_table;')
+        results = cur.fetchall()
+
+        for row in results: 
+            print(row[1])
+            print(row[2])
+
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=results)
-            ) 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=results2)
-            ) 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=results3)
             ) 
 
     # 「最初から」がタップされた場合の処理
