@@ -1712,7 +1712,7 @@ def handle_message(event):
         cur = connection.cursor()
         cur.execute('SELECT * FROM onsen_table;')
         results = cur.fetchall()
-        content_text = results[2][1].replace(" ","") + '\n' + results[2][2].replace(" ","")
+        content_text = results[2][1].replace(" ","") + '\n' + results[2][2].replace(" ","") + '\n' + results[2][3].replace(" ","") + '\n' + results[2][4].replace(" ","") + '\n' + results[2][5].replace(" ","") + '\n' + results[2][6].replace(" ","") + '\n' + results[2][7].replace(" ","") + '\n' + results[2][8].replace(" ","") + '\n' + results[2][9].replace(" ","") + '\n' + results[2][10].replace(" ","") + '\n' + results[2][11].replace(" ","") + '\n' + results[2][12].replace(" ","") + '\n' + results[2][13].replace(" ","") + '\n' + results[2][14].replace(" ","")
 
 
         line_bot_api.reply_message(
