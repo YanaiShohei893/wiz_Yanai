@@ -59,7 +59,7 @@ def handle_follow(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=profile.display_name + "さん、はじめまして！\n" +
-        "友だち追加ありがとうございます。福島温泉情報bot（仮）です。\n" +
+        "友だち追加ありがとうございます。福島温泉情報botです。\n" +
         "温泉の情報を探したい場合は、まずは「温泉を探す」をタップしてください。")
     )
 
@@ -4383,6 +4383,10 @@ def handle_message(event):
     # 「最初から」がタップされた場合の処理
     elif content in ['やり直す']:
         response = "改めて温泉を探す際には、もう一度「温泉を探す」をタップしてください。"
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=response)) 
     # その他              
     else:
         response = "ごめんなさい。メッセージを処理できませんでした。"
