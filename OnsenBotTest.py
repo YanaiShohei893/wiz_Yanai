@@ -1718,7 +1718,11 @@ def handle_message(event):
         cur.execute("SELECT * FROM onsen_table WHERE area = '会津' AND view = '雪景色' AND efficacy = '美肌';")
         results = cur.fetchall()
         if len(results) == 0:
-            print("申し訳ございません。お探しの温泉は見つかりませんでした。")
+            content_text = "申し訳ございません。お探しの温泉は見つかりませんでした。"
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=content_text)
+            ) 
             exit()
         content_text = "温泉名: " + results[0][1].replace(" ","") + '\n' + \
                     "地方: " + results[0][2].replace(" ","") + '\n' + \
